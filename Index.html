@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Proyecto final</title>
+    <link rel="stylesheet" href="index.css">
+    <style>
+        /* Estilos mejorados para el menú */
+        .menu-principal {
+            background-color: #222;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.4);
+        }
+        
+        .menu-principal .menu-contenedor {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .menu-principal ul {
+            display: flex;
+            justify-content: space-between;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .menu-principal li {
+            margin: 0 15px;
+            flex-grow: 1;
+            text-align: center;
+        }
+        
+        .menu-principal a {
+            color: #AF8546;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 22px;
+            padding: 12px 20px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: block;
+            white-space: nowrap;
+        }
+        
+        .menu-principal a:hover {
+            background-color: #AF8546;
+            color: #222;
+            transform: scale(1.05);
+        }
+        
+        /* Fondo elegante */
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        /* Contenedor principal centrado */
+        .contenido-principal {
+            margin-top: 90px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 90px);
+            padding: 20px;
+        }
+        
+        /* Ajustes para el contenedor del perrito */
+        .contenedor {
+            position: relative;
+            z-index: 1;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        /* Efecto flotante para el perrito */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        /* Efecto de partículas decorativas */
+        .particulas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+        
+        .particula {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: animar-particulas linear infinite;
+        }
+        
+        @keyframes animar-particulas {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-1000px) rotate(720deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Efecto de partículas de fondo -->
+    <div class="particulas" id="particulas"></div>
+    
+    <!-- Menú principal mejorado -->
+    <nav class="menu-principal">
+        <div class="menu-contenedor">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="Portafolio.html">Portafolio</a></li>
+                <li><a href="Contacto.html">Contacto</a></li>
+                <li><a href="Actividad1.html">Agregar Elemento</a></li>
+                <li><a href="Juego.html">Juego Interactivo</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contenido con perrito centrado -->
+    <div class="contenido-principal">
+        <div class="contenedor">
+            <div class="cara">
+                <div class="cont-orejas">
+                    <div class="orejas oreja1">
+                        <div class="item"></div>
+                    </div>
+                    <div class="orejas oreja2">
+                        <span></span>
+                    </div>
+                </div>
+                <div class="corazon">
+                   <div class="linea"></div>
+                </div>
+                <div class="cont-ojos">
+                    <div class="ojos ojo1">
+                        <div class="ocular"></div>
+                    </div>
+                    <div class="ojos ojo2">
+                        <div class="ocular"></div>
+                    </div>
+                </div>
+                <div class="box-nariz">
+                    <div class="nariz"></div>
+                </div>
+                <div class="lengua"></div>
+            </div>
+            <div class="cuerpo">
+                <div class="cuello"></div>
+                <div class="patas"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Crear partículas decorativas
+        document.addEventListener('DOMContentLoaded', function() {
+            const particulas = document.getElementById('particulas');
+            const cantidad = 50;
+            
+            for (let i = 0; i < cantidad; i++) {
+                const particula = document.createElement('div');
+                particula.classList.add('particula');
+                
+                // Tamaño y posición aleatorios
+                const size = Math.random() * 10 + 5;
+                const posX = Math.random() * window.innerWidth;
+                const delay = Math.random() * 5;
+                const duration = Math.random() * 20 + 10;
+                
+                particula.style.width = `${size}px`;
+                particula.style.height = `${size}px`;
+                particula.style.left = `${posX}px`;
+                particula.style.bottom = `-${size}px`;
+                particula.style.animationDuration = `${duration}s`;
+                particula.style.animationDelay = `${delay}s`;
+                
+                particulas.appendChild(particula);
+            }
+        });
+    </script>
+</body>
+</html>

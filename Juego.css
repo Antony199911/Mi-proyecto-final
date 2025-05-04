@@ -1,0 +1,232 @@
+/* Reset y estilos base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Fondo animado */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background: linear-gradient(-45deg, #3f51b5, #9c27b0, #2196f3, #00bcd4);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><circle cx="50" cy="50" r="0.5" fill="white" opacity="0.2"/></svg>');
+    background-size: 2px 2px;
+    opacity: 0.3;
+    z-index: -1;
+}
+
+/* Contenedor principal */
+.game-container {
+    background: rgba(15, 20, 40, 0.85);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    padding: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Panel de información */
+.game-info {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.game-info p {
+    font-size: 1.2rem;
+    margin: 10px;
+}
+
+/* Botones */
+button {
+    background: #ff6b6b;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin: 5px;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    background: #ff5252;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Tablero de juego */
+.memory-board {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    perspective: 1000px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Estilos de cartas */
+.card {
+    position: relative;
+    height: 120px;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+    cursor: pointer;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    user-select: none;
+}
+
+.card-front {
+    background: white;
+    color: #333;
+    transform: rotateY(180deg);
+}
+
+.card-back {
+    background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+    color: white;
+}
+
+.card.flipped {
+    transform: rotateY(180deg);
+}
+
+/* Cartas emparejadas (MODIFICACIÓN PRINCIPAL) */
+.card.matched {
+    transform: none !important;
+    cursor: default;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+}
+
+.card.matched .card-front {
+    transform: rotateY(0deg);
+    z-index: 1;
+}
+
+.card.matched .card-back {
+    display: none;
+}
+
+/* Mensaje de victoria */
+.win-message {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s;
+}
+
+.win-message.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.win-message h2 {
+    font-size: 3rem;
+    color: #4caf50;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+}
+
+.win-message p {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .memory-board {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .card {
+        height: 90px;
+    }
+    
+    .card-face {
+        font-size: 2rem;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .game-info p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .memory-board {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .card {
+        height: 80px;
+    }
+}

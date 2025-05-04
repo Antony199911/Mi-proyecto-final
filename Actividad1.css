@@ -1,0 +1,135 @@
+/* Reset y estilos base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Contenedor fullscreen */
+.fullscreen-container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #6e8efb 0%, #a777e3 100%);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 20px;
+}
+
+.content-wrapper {
+    width: 100%;
+    max-width: 800px;
+    background: rgba(255, 255, 255, 0.96);
+    border-radius: 20px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+    padding: 40px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+h1 {
+    color: #5d5bff;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+}
+
+/* Formulario mejorado */
+.input-group {
+    display: flex;
+    margin-bottom: 30px;
+    gap: 10px;
+}
+
+#taskInput {
+    flex: 1;
+    padding: 16px 20px;
+    border: 2px solid rgba(93, 91, 255, 0.2);
+    border-radius: 12px;
+    font-size: 1.1rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+#taskInput:focus {
+    border-color: #5d5bff;
+    box-shadow: 0 0 0 4px rgba(93, 91, 255, 0.1);
+}
+
+#addTaskBtn {
+    background: #5d5bff;
+    color: white;
+    border: none;
+    padding: 0 30px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+#addTaskBtn:hover {
+    background: #4a48d4;
+    transform: translateY(-2px);
+}
+
+/* Lista de tareas */
+#taskList {
+    list-style: none;
+}
+
+.task-item {
+    background: white;
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.task-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.task-text {
+    flex: 1;
+    font-size: 1.1rem;
+    padding-right: 15px;
+}
+
+.delete-btn {
+    background: #ff5e5e;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.delete-btn:hover {
+    background: #ff3d3d;
+    transform: scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .content-wrapper {
+        padding: 30px 20px;
+        border-radius: 0;
+    }
+    
+    .fullscreen-container {
+        padding: 0;
+    }
+}
